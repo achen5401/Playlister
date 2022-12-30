@@ -1,0 +1,405 @@
+[{
+  "_id": {
+    "$oid": "63915dac5bfd976b74ab321d"
+  },
+  "comments": [],
+  "likes": [
+    "adcchen"
+  ],
+  "dislikes": [],
+  "views": [
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1"
+  ],
+  "name": "Anime Playlist",
+  "ownerUsername": "adcchen",
+  "ownerEmail": "adam.chen.1@stonybrook.edu",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "63915f3e5bfd976b74ab326d"
+      },
+      "title": "Spy x Family",
+      "artist": "Peanuts",
+      "youTubeId": "Hlw8dTz_iq0"
+    },
+    {
+      "_id": {
+        "$oid": "63915fc15bfd976b74ab32a8"
+      },
+      "title": "Chainsaw Man",
+      "artist": "Denji",
+      "youTubeId": "dFlDRhvM4L0"
+    },
+    {
+      "_id": {
+        "$oid": "63915fc15bfd976b74ab32a9"
+      },
+      "title": "Bocchi The Rock",
+      "artist": "Bocchi",
+      "youTubeId": "dlSbEP4V-gI"
+    },
+    {
+      "_id": {
+        "$oid": "63915fc15bfd976b74ab32aa"
+      },
+      "title": "BHNA 10",
+      "artist": "All Might",
+      "youTubeId": "s7cf7GE7kvE"
+    }
+  ],
+  "published": {
+    "isPublished": true,
+    "publishedDate": "2022-12-08T03:53:37.077Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670471084261"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475236283"
+    }
+  },
+  "__v": 49
+},{
+  "_id": {
+    "$oid": "639161595bfd976b74ab364d"
+  },
+  "comments": [],
+  "likes": [
+    "adcchen"
+  ],
+  "dislikes": [],
+  "views": [
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1"
+  ],
+  "name": "KPOP Playlist",
+  "ownerUsername": "adcchen",
+  "ownerEmail": "adam.chen.1@stonybrook.edu",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639168e35bfd976b74ab3b2f"
+      },
+      "title": "Dynamite",
+      "artist": "BTS",
+      "youTubeId": "gdZLi9oWNZg"
+    },
+    {
+      "_id": {
+        "$oid": "639168e35bfd976b74ab3b30"
+      },
+      "title": "DDU-DU DDU-DU",
+      "artist": "BLACKPINK",
+      "youTubeId": "IHNzOHi8sJs"
+    },
+    {
+      "_id": {
+        "$oid": "639168e35bfd976b74ab3b31"
+      },
+      "title": "FANCY",
+      "artist": "TWICE",
+      "youTubeId": "kOHB85vDuow"
+    }
+  ],
+  "published": {
+    "isPublished": true,
+    "publishedDate": "2022-12-08T04:32:35.094Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670472025496"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475245609"
+    }
+  },
+  "__v": 20
+},{
+  "_id": {
+    "$oid": "639168f75bfd976b74ab3b4c"
+  },
+  "comments": [],
+  "likes": [],
+  "dislikes": [
+    "adcchen"
+  ],
+  "views": [
+    "1",
+    "1",
+    "1"
+  ],
+  "name": "Sample Data",
+  "ownerUsername": "adcchen",
+  "ownerEmail": "adam.chen.1@stonybrook.edu",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c04"
+      },
+      "title": "TEST1",
+      "artist": "CSE 316",
+      "youTubeId": "_2-Y2WbrKpw"
+    },
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c05"
+      },
+      "title": "TEST2",
+      "artist": "CSE 316",
+      "youTubeId": "_m-gO0HSCYk"
+    },
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c06"
+      },
+      "title": "TEST3",
+      "artist": "CSE 316",
+      "youTubeId": "_mVW8tgGY_w"
+    }
+  ],
+  "published": {
+    "isPublished": true,
+    "publishedDate": "2022-12-08T04:34:31.968Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670473975925"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670474326763"
+    }
+  },
+  "__v": 21
+},{
+  "_id": {
+    "$oid": "6391695b5bfd976b74ab3c17"
+  },
+  "comments": [],
+  "likes": [],
+  "dislikes": [],
+  "views": [],
+  "name": "Sample Data - Copy",
+  "ownerUsername": "adcchen",
+  "ownerEmail": "adam.chen.1@stonybrook.edu",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c04"
+      },
+      "title": "TEST1",
+      "artist": "CSE 316",
+      "youTubeId": "_2-Y2WbrKpw"
+    },
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c05"
+      },
+      "title": "TEST2",
+      "artist": "CSE 316",
+      "youTubeId": "_m-gO0HSCYk"
+    },
+    {
+      "_id": {
+        "$oid": "639169575bfd976b74ab3c06"
+      },
+      "title": "TEST3",
+      "artist": "CSE 316",
+      "youTubeId": "_mVW8tgGY_w"
+    }
+  ],
+  "published": {
+    "isPublished": false,
+    "publishedDate": "2022-12-08T04:34:35.425Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670474075436"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670474075436"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63916ae45bfd976b74ab3cff"
+  },
+  "comments": [],
+  "likes": [],
+  "dislikes": [],
+  "views": [],
+  "name": "bOB TEST",
+  "ownerUsername": "bob",
+  "ownerEmail": "bob",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "63916aeb5bfd976b74ab3d0f"
+      },
+      "title": "test",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    },
+    {
+      "_id": {
+        "$oid": "63916d9be7116e28e8343914"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    },
+    {
+      "_id": {
+        "$oid": "63916d9be7116e28e8343915"
+      },
+      "title": "Untitled",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    }
+  ],
+  "published": {
+    "isPublished": true,
+    "publishedDate": "2022-12-08T04:52:55.225Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670474468194"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475175247"
+    }
+  },
+  "__v": 8
+},{
+  "_id": {
+    "$oid": "63916da9e7116e28e8343942"
+  },
+  "comments": [],
+  "likes": [],
+  "dislikes": [],
+  "views": [
+    "1"
+  ],
+  "name": "bob test 2",
+  "ownerUsername": "bob",
+  "ownerEmail": "bob",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "63916dc9e7116e28e8343986"
+      },
+      "title": "song 1",
+      "artist": "cse 316",
+      "youTubeId": "1emA1EFsPMM"
+    },
+    {
+      "_id": {
+        "$oid": "63916dc9e7116e28e8343987"
+      },
+      "title": "song 2",
+      "artist": "cse 316",
+      "youTubeId": "2eeKm5zzJ5o"
+    }
+  ],
+  "published": {
+    "isPublished": true,
+    "publishedDate": "2022-12-08T04:53:29.161Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670475177717"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475247501"
+    }
+  },
+  "__v": 7
+},{
+  "_id": {
+    "$oid": "63916dcae7116e28e834398f"
+  },
+  "comments": [],
+  "likes": [],
+  "dislikes": [],
+  "views": [],
+  "name": "bob editing playlist",
+  "ownerUsername": "bob",
+  "ownerEmail": "bob",
+  "songs": [
+    {
+      "_id": {
+        "$oid": "63916ddae7116e28e83439ab"
+      },
+      "title": "not rickroll",
+      "artist": "?",
+      "youTubeId": "dQw4w9WgXcQ"
+    }
+  ],
+  "published": {
+    "isPublished": false,
+    "publishedDate": "2022-12-08T04:53:30.787Z"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670475210799"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475226029"
+    }
+  },
+  "__v": 2
+}]

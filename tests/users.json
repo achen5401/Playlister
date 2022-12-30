@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "63915d855bfd976b74ab3213"
+  },
+  "playlists": [
+    {
+      "$oid": "63915dac5bfd976b74ab321d"
+    },
+    {
+      "$oid": "639161595bfd976b74ab364d"
+    },
+    {
+      "$oid": "639168f75bfd976b74ab3b4c"
+    },
+    {
+      "$oid": "6391695b5bfd976b74ab3c17"
+    }
+  ],
+  "firstName": "Adam",
+  "lastName": "Chen",
+  "username": "adcchen",
+  "email": "adam.chen.1@stonybrook.edu",
+  "passwordHash": "$2a$10$Nyq6E.EO/rUK.7.4lfEeZugdsT4KFKo6jLExjz39D03esc.akpiPS",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670471045380"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670474075435"
+    }
+  },
+  "__v": 118
+},{
+  "_id": {
+    "$oid": "63916adc5bfd976b74ab3cfa"
+  },
+  "playlists": [
+    {
+      "$oid": "63916ae45bfd976b74ab3cff"
+    },
+    {
+      "$oid": "63916da9e7116e28e8343942"
+    },
+    {
+      "$oid": "63916dcae7116e28e834398f"
+    }
+  ],
+  "firstName": "bob",
+  "lastName": "bob",
+  "username": "bob",
+  "email": "bob",
+  "passwordHash": "$2a$10$Sk2fJr.K7zVdOCfJXQr1SeObi5jsi0Zd4GCu8hDTT9i57l3j3BY0u",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1670474460783"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1670475210798"
+    }
+  },
+  "__v": 3
+}]
