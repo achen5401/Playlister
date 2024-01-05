@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config();
 
+const uri = process.env.MONGOCONNECT;
 mongoose
-    .connect(process.env.MONGOCONNECT, { useNewUrlParser: true })
+    .connect(uri, { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })
