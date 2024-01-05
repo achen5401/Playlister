@@ -40,7 +40,8 @@ export const GlobalStoreActionType = {
     PLAY_PLAYLIST: "PLAY_PLAYLIST",
     RESET_STORE : "RESET_STORE",
     SET_PLAYER: "SET_PLAYER",
-    SET_PLAYLIST_INFO: "SET_PLAYLIST_INFO"
+    SET_PLAYLIST_INFO: "SET_PLAYLIST_INFO",
+    GUEST_LOGIN: "GUEST_LOGIN"
 
 }
 
@@ -402,11 +403,11 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     currentModal : CurrentModal.NONE,
                     idNamePairs: store.idNamePairs,
-                    currentList: null,
-                    currentSongIndex: -1,
-                    currentSong: null,
+                    currentList: store.currentList,
+                    currentSongIndex: store.currentSongIndex,
+                    currentSong: store.currentSong,
                     newListCounter: store.newListCounter,
-                    listNameActive: false,
+                    listNameActive: store.listNameActive,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null,
                     userPlaylists: store.userPlaylists,
@@ -507,6 +508,29 @@ function GlobalStoreContextProvider(props) {
                     player: store.player,
                     playlistInfo: payload
                 })
+            }
+
+            case GlobalStoreActionType.GUEST_LOGIN: {
+                return setStore({
+                    currentModal : CurrentModal.NONE,
+                    idNamePairs: [],
+                    currentList: null,
+                    currentSongIndex : -1,
+                    currentSong : null,
+                    newListCounter: 0,
+                    listNameActive: false,
+                    listIdMarkedForDeletion: null,
+                    listMarkedForDeletion: null,
+                    ctrlPressed: false,
+                    userPlaylists: null,
+                    searchValue: "",
+                    currentScreen: "all-playlists",
+                    playerCommentsButton: "player",
+                    playingPlaylist: null,
+                    player: store.player,
+                    playlistInfo: store.playlistInfo
+            
+                });
             }
 
             default:
@@ -990,6 +1014,9 @@ function GlobalStoreContextProvider(props) {
         tps.doTransaction();
     }
     store.canAddNewSong = function() {
+        if (!auth.user) {
+            return false;
+        }
         return (store.currentList !== null && 
             store.currentList.ownerEmail == auth.user.email &&
             !store.currentList.published.isPublished);
@@ -1017,6 +1044,13 @@ function GlobalStoreContextProvider(props) {
         tps.clearAllTransactions();
     }
 
+    store.guestUser = function () {
+        storeReducer({
+            type: GlobalStoreActionType.GUEST_LOGIN,
+            payload: "all-playlists"
+        })
+    }
+
     // SETUP CTRL-Z AND CTRL-Y
     store.ctrlPressed = false;
     document.onkeydown = store.handleAppKeyDown;
@@ -1027,12 +1061,12 @@ function GlobalStoreContextProvider(props) {
         if (keyEvent.which == CTRL_KEY_CODE) {
             store.ctrlPressed = true;
         }
-        else if (keyEvent.key.toLowerCase() == "z") {
+        else if (keyEvent.key == "z" || keyEvent.key == "Z") {
             if (store.ctrlPressed) {
                 store.undo();
             }
         }
-        else if (keyEvent.key.toLowerCase() == "y") {
+        else if (keyEvent.key == "y" || keyEvent.key == "Y") {
             if (store.ctrlPressed) {
                 store.redo();
             }

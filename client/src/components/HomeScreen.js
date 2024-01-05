@@ -37,22 +37,14 @@ export default function HomeScreen() {
                 }
             }
     }
-    else if (store.currentScreen == "all-playlists") {
+    else if (store.currentScreen === "all-playlists" || store.currentScreen === "users-playlists") {
+        // Logic to display all published playlists in the 'all-playlists' or 'users-playlists' screen
         for (let i = 0; i < store.idNamePairs.length; i++) {
             if (store.userPlaylists[i].published.isPublished) {
-                pairPlaylists.push(
-                    {pair: store.idNamePairs[i], playlist: store.userPlaylists[i]});
-                }
+                pairPlaylists.push({ pair: store.idNamePairs[i], playlist: store.userPlaylists[i] });
             }
         }
-    else if (store.currentScreen == "users-playlists") {
-        for (let i = 0; i < store.idNamePairs.length; i++) {
-            if (store.userPlaylists[i].published.isPublished) {
-                pairPlaylists.push(
-                    {pair: store.idNamePairs[i], playlist: store.userPlaylists[i]});
-                }
-            }
-        }
+    }
 
 
     if (store.searchValue !== "" && store.userPlaylists) {
@@ -104,37 +96,18 @@ export default function HomeScreen() {
 
     let listCard = "";
     if (store) {
-        if(store.currentScreen == "home") {
-            listCard = 
+        listCard = (
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
-            {
-                pairPlaylists.map((pairPlaylist) => (
+                {pairPlaylists.map((pairPlaylist) => (
                     <ListCard
                         key={pairPlaylist.pair._id}
                         idNamePair={pairPlaylist.pair}
                         userPlaylist={pairPlaylist.playlist}
                         selected={false}
                     />
-                ))
-            }
-            </List>;
-        }
-        if ((store.currentScreen == "all-playlists" || store.currentScreen == "users-playlists")
-            && store.searchValue) {
-                listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
-            {
-                pairPlaylists.map((pairPlaylist) => (
-                    <ListCard
-                        key={pairPlaylist.pair._id}
-                        idNamePair={pairPlaylist.pair}
-                        userPlaylist={pairPlaylist.playlist}
-                        selected={false}
-                    />
-                ))
-            }
-            </List>;
-            }
+                ))}
+            </List>
+        );
     }
 
     return (
@@ -142,5 +115,6 @@ export default function HomeScreen() {
             <div id="list-selector-list">
                 {listCard}
             </div>
-        </div>)
+        </div>
+    );
 }

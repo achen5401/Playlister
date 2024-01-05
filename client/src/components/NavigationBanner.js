@@ -41,20 +41,18 @@ export default function NavBar(){
     const [text, setText] = useState("");
 
     function handleUpdateText(event) {
-        setText(event.target.value);
+        const searchText = event.target.value;
+        setText(searchText);
+
+        // Perform search as the user types in the search bar
+        store.setSearchField(searchText);
     }
 
+
     function handleEnter(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            if (text !== "") {
-                store.setSearchField(text);
-                document.getElementById("searchbar-text-field").value = "";
-            }
-            setText("");
-            disabled = false;
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent default behavior (submitting form)
         }
-    
     }
 
     const handleProfileMenuOpen = (event) => {
@@ -89,8 +87,24 @@ export default function NavBar(){
         <MenuItem onClick={()=>handleMenuItemClick("dislikes")}>Dislikes (High - Low)</MenuItem>
     </Menu>);
 
-
     let navMenu = "";
+
+    let homeButton = "";
+    if (!auth.guest) {
+        homeButton = <Button
+                        sx={{
+                            mr: 2,
+                            backgroundColor: store.currentScreen === "home" ? "#ccc" : "",
+                            "&:hover": {
+                                backgroundColor: store.currentScreen === "home" ? "#ccc" : "",
+                            },
+                        }}
+                        disabled={disabled}
+                        onClick = {()=>handlePath("home")}
+                        >
+                            <HomeOutlinedIcon style={{fontSize:"50px", float: "right", color:"black"}}/>
+                    </Button>
+    }
     //Only allow the nav menu to appear if a guest or a user is viewing the main app
     //ie, remove the menu when a guest tries to go back to the splash screen
     if (auth.loggedIn == true){
@@ -98,15 +112,15 @@ export default function NavBar(){
         (<Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar style={{backgroundColor: '#A19F9F'}}>
+                    {homeButton}
                     <Button
-                        sx={{ mr: 2}}
-                        disabled={disabled}
-                        onClick = {()=>handlePath("home")}
-                        >
-                            <HomeOutlinedIcon style={{fontSize:"50px", float: "right", color:"black"}}/>
-                    </Button>
-                    <Button
-                    sx={{ mr: 2 }}
+                    sx={{
+                        mr: 2,
+                        backgroundColor: store.currentScreen === "all-playlists" ? "#ccc" : "",
+                        "&:hover": {
+                            backgroundColor: store.currentScreen === "all-playlists" ? "#ccc" : "",
+                        },
+                    }}
                     disabled={disabled}
                     onClick = {()=>handlePath("all-playlists")}
                     >
@@ -114,7 +128,13 @@ export default function NavBar(){
                     </Button>
 
                     <Button
-                    sx={{ mr: 2 }}
+                    sx={{
+                        mr: 2,
+                        backgroundColor: store.currentScreen === "users-playlists" ? "#ccc" : "",
+                        "&:hover": {
+                            backgroundColor: store.currentScreen === "users-playlists" ? "#ccc" : "",
+                        },
+                    }}
                     disabled={disabled}
                     onClick = {()=>handlePath("users-playlists")}
                     >
@@ -122,18 +142,25 @@ export default function NavBar(){
                     </Button>
 
                     <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '75ch', backgroundColor: "white" },
-                    }}
-                    disabled={disabled}
-                    noValidate
-                    autoComplete="off"
-                    >
-                        <TextField id="searchbar-text-field" 
-                        onKeyPress={event => handleEnter(event)}
-                        onChange={event => handleUpdateText(event)}/>
-                    </Box>
+            component="form"
+            sx={{
+                '& > :not(style)': { m: 1, width: '75ch', backgroundColor: 'white' },
+            }}
+            disabled={disabled}
+            noValidate
+            autoComplete="off"
+        >
+            <TextField
+                id="searchbar-text-field"
+                onKeyPress={event => handleEnter(event)}
+                onChange={event => handleUpdateText(event)}
+                placeholder="Search playlists..."
+                            InputLabelProps={{
+                                shrink: true,
+                                style: { color: '#808080' }, // Adjust placeholder text color
+                            }}
+            />
+        </Box>
                     <div style = {{position: "absolute", left: "90%", display: "grid", gridTemplateColumns: "1fr 1fr"}}>
                     <strong style={{color: "black", size:"45px"}}>
                             SORT BY

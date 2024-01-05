@@ -171,7 +171,7 @@ getPublishedPlaylistPairs = async (req, res) => {
                         .json({ success: false, error: 'Playlists not found' })
                 }
                 else {
-                    console.log("Send the Playlist pairs");
+                    console.log("Send the Playlist pairs22");
                     // PUT ALL THE LISTS INTO ID, NAME PAIRS
                     let pairs = [];
                     for (let key in playlists) {

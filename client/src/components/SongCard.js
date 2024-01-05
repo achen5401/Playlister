@@ -48,10 +48,12 @@ function SongCard(props) {
     let cardClass = "list-card unselected-list-card";
 
     let canDeleteSong = "none";
-    if (auth.user.email == store.currentList.ownerEmail
-        && !store.currentList.published.isPublished){
-            canDeleteSong = "";
-        }
+    if (auth.user) {
+        if (auth.user.email == store.currentList.ownerEmail
+            && !store.currentList.published.isPublished){
+                canDeleteSong = "";
+            }
+    }
     return (
         <div
             key={index}

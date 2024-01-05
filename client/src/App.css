@@ -97,11 +97,6 @@ body {
   margin: auto
 }
 
-#edit-playlist-name {
-  position: relative;
-  font-size: 50pt;
-}
-
 .playlist-button,
 .playlist-button-disabled {
   font-size: 36pt;
@@ -144,31 +139,22 @@ body {
   font-size: 16pt;
 }
 
+#statusbar-container {
+  position: relative;
+}
+
 #playlister-statusbar {
   position: absolute;
-  left: 0%;
-  top: 90%;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 10%;
+  height: 50px; /* Adjust this value as needed */
   background-color: rgb(185, 181, 181);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36pt;
-}
-
-#list-selector-heading {
-  position: absolute;
-  left: 0%;
-  top: 0%;
-  width: 100%;
-  height: 10%;
-  text-align: center;
-  font-size: 24pt;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 36pt; /* Adjust the font size as needed */
+  z-index: 9999;
 }
 
 #add-list-button {
@@ -382,6 +368,22 @@ input {
 
 #confirm-cancel-container {
   text-align: center;
+}
+
+.player-comments-container {
+  height: 400px; /* Or any specific height */
+  width: 100%; /* Or any specific width */
+  /* Additional styling as needed */
+}
+
+.player-comments-content {
+  height: 100%;
+  /* Additional styling as needed */
+}
+
+.player-comments-content-wrapper {
+  height: 100%;
+  width: 100%;
 }
 
 

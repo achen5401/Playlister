@@ -11,12 +11,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
+    const history = useHistory();
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -33,6 +35,18 @@ export default function AppBanner() {
         store.clearAllTransactions();
         store.resetStore();
         
+    }
+
+    const handleLogin = () => {
+        handleMenuClose();
+        auth.logoutGuestUser();
+        history.push("/login");
+    }
+
+    const handleRegister = () => {
+        handleMenuClose();
+        auth.logoutGuestUser();
+        history.push("/register");
     }
 
     const menuId = '';
@@ -52,8 +66,8 @@ export default function AppBanner() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
+            <MenuItem onClick={handleLogin}>Login</MenuItem>
+            <MenuItem onClick={handleRegister}>Create New Account</MenuItem>
         </Menu>
     );
     const loggedInMenu = 
@@ -76,14 +90,16 @@ export default function AppBanner() {
         </Menu>        
 
     let menu = loggedOutMenu;
-    if (auth.loggedIn) {
+    let logoRoute = '/'
+    if (auth.loggedIn && !auth.guest) {
         menu = loggedInMenu;
+        logoRoute = '/home'
     }
     
     function getAccountMenu(loggedIn) {
         let userInitials = auth.getUserInitials();
         console.log("userInitials: " + userInitials);
-        if (loggedIn) 
+        if (loggedIn && !auth.guest) 
             return <div
             style = {{color : "black"}}>{userInitials}</div>;
         else
@@ -101,7 +117,7 @@ export default function AppBanner() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <img src = 'playlister_logo.png' width = "195px" height = "64.5px"  />
+                        <img src="playlister_logo.png" alt="Playlister Logo" width="195px" height="64.5px" onClick={handleLogout}/>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}></Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

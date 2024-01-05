@@ -12,6 +12,7 @@ import Link from '@mui/material/Link';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { Link as RouterLink } from 'react-router-dom'; // Importing the Link component from react-router-dom
 
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
@@ -122,9 +123,9 @@ export default function RegisterScreen() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/login/" variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
+                            <Link component={RouterLink} to="/login" variant="body2">
+                                Already have an account? Sign in
+                            </Link>
                             </Grid>
                         </Grid>
                     </Box>

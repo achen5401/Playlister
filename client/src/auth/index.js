@@ -11,6 +11,7 @@ export const AuthActionType = {
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
     REGISTER_USER: "REGISTER_USER",
+    GUEST_USER: "GUEST_USER"
 }
 
 function AuthContextProvider(props) {
@@ -42,7 +43,7 @@ function AuthContextProvider(props) {
                     user: payload.user,
                     loggedIn: true,
                     errorMessage: payload.errorMessage,
-                    guest: payload.guest
+                    guest: false
                 })
             }
             case AuthActionType.LOGOUT_USER: {
@@ -59,6 +60,14 @@ function AuthContextProvider(props) {
                     loggedIn: true,
                     errorMessage: payload.errorMessage,
                     guest: false
+                })
+            }
+            case AuthActionType.GUEST_USER: {
+                return setAuth({
+                    user: null,
+                    loggedIn: true,
+                    errorMessage: "",
+                    guest: payload
                 })
             }
             default:
@@ -173,6 +182,16 @@ function AuthContextProvider(props) {
         }
     }
 
+    auth.logoutGuestUser = async function() {
+        const response = await api.logoutUser();
+        if (response.status === 200) {
+            authReducer( {
+                type: AuthActionType.LOGOUT_USER,
+                payload: null,
+            })
+        }
+    }
+
     auth.getUserInitials = function() {
         let initials = "";
         if (auth.user) {
@@ -195,12 +214,11 @@ function AuthContextProvider(props) {
     }
 
     auth.guestUser = function() {
-        if (auth.guestMade == 0) {
-            auth.registerUser("--------", "--------", "--------", "--------", "--------", "--------");
-        }
-        else {
-            auth.loginUser("--------", "--------");
-        }
+        authReducer( {
+            type: AuthActionType.GUEST_USER,
+            payload: true,
+        })
+        history.push("/home");
     }
 
     return (

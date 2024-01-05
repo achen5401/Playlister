@@ -28,33 +28,54 @@ import {
   
   @author McKilla Gorilla
 */
-const App = () => {   
+const WithPlayerAndComments = ({ children }) => (
+    <div style={{ display: 'grid', gridTemplateColumns: '5fr 2fr', height: '80%' }}>
+      {children}
+      <PlayerAndComments />
+    </div>
+  );
+  
+  const App = () => {
     return (
-        <BrowserRouter>
-            <AuthContextProvider>
-                <GlobalStoreContextProvider>              
-                    <AppBanner />
-                    <NavigationBanner />
-                    <div style={{display: "grid", gridTemplateRows: "9fr 2fr",
-                        height: "80%"}}>
-                    <div style={{display: "grid", gridTemplateColumns: "5fr 2fr",
-                        height: "80%"}}>
-                    <Switch>
-                        <Route path= "/" exact component = {SplashScreen} />
-                        <Route path="/home" exact component = {HomeScreen} />
-                        <Route path="/login/" exact component={LoginScreen} />
-                        <Route path="/register/" exact component={RegisterScreen} />
-                        <Route path="/playlist/:id" exact component={WorkspaceScreen} />
-                    </Switch>
-                    <PlayerAndComments/>
-                    </div>
-                    <Statusbar />
-                    </div>
-                    <MUIAccountErrorModal />
-                </GlobalStoreContextProvider>
-            </AuthContextProvider>
-        </BrowserRouter>
-    )
-}
+      <BrowserRouter>
+        <AuthContextProvider>
+          <GlobalStoreContextProvider>
+            <AppBanner />
+            <NavigationBanner />
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateRows: '9fr 2fr',
+                height: '80%',
+              }}
+            >
+              <Switch>
+                <Route path="/" exact component={SplashScreen} />
+                {/* Route with PlayerAndComments */}
+                <Route path="/home">
+                  <WithPlayerAndComments>
+                    <HomeScreen />
+                  </WithPlayerAndComments>
+                </Route>
+                {/* Route with PlayerAndComments */}
+                <Route path="/playlist/:id">
+                  <WithPlayerAndComments>
+                    <WorkspaceScreen />
+                  </WithPlayerAndComments>
+                </Route>
+                <Route path="/login/" exact component={LoginScreen} />
+                <Route path="/register/" exact component={RegisterScreen} />
+              </Switch>
+              <div id="statusbar-container">
+              <Statusbar />
+                </div>
+            </div>
+            <MUIAccountErrorModal />
+          </GlobalStoreContextProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
+  };
+  
 
 export default App

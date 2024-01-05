@@ -4,8 +4,10 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../auth'
+import { GlobalStoreContext } from '../store'
 export default function SplashScreen() {
     const {auth} = useContext(AuthContext);
+    const { store } = useContext(GlobalStoreContext);
     const WelcomeButton = styled(Button)({
         boxShadow: 'none',
         textTransform: 'none',
@@ -34,8 +36,13 @@ export default function SplashScreen() {
           boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
       });
+
+    function guestUser() {
+        auth.guestUser();
+        store.guestUser();
+    }
     return (
-        <div id="splash-screen" className="fade-in">
+        <div id="splash-screen" className="fade-in" style={{ height: '100vh', background: 'linear-gradient(to bottom, #F0F0F0, #C0C0C0)' }}>
             <div id="welcome-text">Welcome to<br/>Playlister!</div>
             <div className="description-box">
                     This website provides a place for people to create and share music playlists with others.
@@ -58,11 +65,9 @@ export default function SplashScreen() {
                     </Link>
                 </div>
                 <div className="welcome-button" style={{position: 'relative', right:"-90px"}}>
-                    <Link to="/home">
-                        <WelcomeButton onClick={()=>auth.guestUser()}>
+                        <WelcomeButton onClick={()=>guestUser()}>
                             Continue as Guest
                         </WelcomeButton>
-                    </Link>
                 </div>
             </div>
             <div style={{position: "relative", top:"40%", left: "38%", fontSize:"30px"}}>

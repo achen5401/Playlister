@@ -161,16 +161,16 @@ export default function PlaylisterYouTubePlayer() {
                 <FastRewind />
             </Button>
             <Button
-                id='pause-button'
-                onClick={handlePause}
-                variant="contained">
-                <Stop />
-            </Button>
-            <Button
                 id='play-button'
                 onClick={handlePlay}
                 variant="contained">
                 <PlayArrow />
+            </Button>
+            <Button
+                id='pause-button'
+                onClick={handlePause}
+                variant="contained">
+                <Stop />
             </Button>
             <Button
                 id='fast-forward-button'

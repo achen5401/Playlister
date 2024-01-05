@@ -1,83 +1,54 @@
-import React, { useContext, useEffect } from 'react'
-import { GlobalStoreContext } from '../store'
-import AuthContext from '../auth'
-import ListCard from './ListCard.js'
-
-import AddIcon from '@mui/icons-material/Add';
-import Fab from '@mui/material/Fab'
-import List from '@mui/material/List';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography'
+import React, { useContext } from 'react';
+import { GlobalStoreContext } from '../store';
+import AuthContext from '../auth';
 import PlaylisterYouTubePlayer from './PlaylisterYouTubePlayer';
-import Comments from './Comments'
-/*
-    This React component lists all the top5 lists in the UI.
-    
-    @author McKilla Gorilla
-*/
+import Comments from './Comments';
+import Button from '@mui/material/Button';
+
 export default function PlayerAndComments() {
-    const { store } = useContext(GlobalStoreContext);
-    const { auth } = useContext(AuthContext);
+  const { store } = useContext(GlobalStoreContext);
+  const { auth } = useContext(AuthContext);
 
-    let playerCommentsButton = store.playerCommentsButton;
+  let playerCommentsButton = store.playerCommentsButton;
 
-    function handlePlayerButtonClick(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        store.setPlayerCommentsButton("player");
-    }
+  function handlePlayerButtonClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    store.setPlayerCommentsButton('player');
+  }
 
-    function handleCommentsButtonClick(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        store.setPlayerCommentsButton("comments");
-    }
+  function handleCommentsButtonClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    store.setPlayerCommentsButton('comments');
+  }
 
-    let playerCommentsSubBox = ""
-    if (playerCommentsButton == "player") {
-        playerCommentsSubBox = <PlaylisterYouTubePlayer/>;
-    }
-    else if (playerCommentsButton == "comments") {
-        playerCommentsSubBox = <Comments/>
-    }
+  let playerCommentsSubBox = playerCommentsButton === 'player' ? <PlaylisterYouTubePlayer /> : <Comments />;
 
-    let playCommentsBox = <div id= "player-and-comments"
-        style = {{display: "none"}}></div> 
-    let playingPlaylist = ""
-    if (store.playingPlaylist) {
-        playingPlaylist = store.playingPlaylist.name;
-    }
-
-    if (auth.loggedIn) {
-        playCommentsBox = 
-        <div id= "player-and-comments">
-        <div id= "player-and-comments-buttons">
+  return auth.loggedIn ? (
+    <div id="player-and-comments" className="player-comments-container">
+      <div id="player-and-comments-buttons">
         <Button
-            disabled={playerCommentsButton == "player"}
-            id='player-button'
-            onClick={handlePlayerButtonClick}
-            variant="contained">
-            Player
+          disabled={playerCommentsButton === 'player'}
+          id="player-button"
+          onClick={handlePlayerButtonClick}
+          variant="contained"
+        >
+          Player
         </Button>
-        <Button 
-            disabled={playerCommentsButton == "comments"}
-            id='undo-button'
-            onClick={handleCommentsButtonClick}
-            variant="contained">
-            Comments
+        <Button
+          disabled={playerCommentsButton === 'comments'}
+          id="undo-button"
+          onClick={handleCommentsButtonClick}
+          variant="contained"
+        >
+          Comments
         </Button>
-        </div>
+      </div>
 
-        <div id = "player-or-comments">
-            {playerCommentsSubBox}
-        </div>
-
-
-    
+      <div id="player-or-comments" className="player-comments-content">
+        <div className="player-comments-content-wrapper">{playerCommentsSubBox}</div>
+      </div>
     </div>
-    }
-
-    return(
-        playCommentsBox
-    )
+  ) : null;
 }

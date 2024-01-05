@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RedoIcon from '@mui/icons-material/Redo';
 import UndoIcon from '@mui/icons-material/Undo';
 import IconButton from '@mui/material/IconButton';
-import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 /*
     This toolbar is a functional React component that
@@ -47,10 +47,12 @@ function EditToolbar() {
     }
 
     function handleDuplicateList() {
+        let aOwnerUsername = auth.user ? auth.user.username : "";
+        let aOwnerEmail = auth.user? auth.user.email : "";
         let payload = {
             name: store.currentList.name + " - Copy",
-            ownerUsername: auth.user.username,
-            ownerEmail: auth.user.email,
+            ownerUsername: aOwnerUsername,
+            ownerEmail: aOwnerEmail,
             songs: store.currentList.songs,
             comments: [],
             likes: [],
@@ -60,6 +62,14 @@ function EditToolbar() {
         }
         store.createList(payload);
 
+    }
+
+    function canDeleteList() {
+        if (!auth.user) {
+            return true;
+        }
+        return !(store.currentList.ownerUsername == auth.user.username
+            && store.currentList.ownerEmail == auth.user.email);
     }
 
     return (
@@ -93,12 +103,14 @@ function EditToolbar() {
                     Publish
             </Button>
             <Button 
+                disabled = {canDeleteList()}
                 id='delete-button'
                 onClick={handleDeleteList}
                 variant="contained">
                     Delete
             </Button>
             <Button 
+                disabled = {auth.guest}
                 id='duplicate-button'
                 onClick={handleDuplicateList}
                 variant="contained">
@@ -110,7 +122,7 @@ function EditToolbar() {
                 id='close-button'
                 onClick={handleClose}
                 variant="contained">
-                    <KeyboardArrowUpOutlinedIcon 
+                    <KeyboardArrowLeftOutlinedIcon 
                     style={{fontSize:"40px", color:'black',
                      position: "relative"}}/>
             </IconButton>

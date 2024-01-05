@@ -9,6 +9,7 @@ import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import AuthContext from '../auth'
 
+
 /*
     This is a card in our list of top 5 lists. It lets select
     a list for editing and it has controls for changing its 
@@ -31,9 +32,6 @@ function ListCard(props) {
             if (_id.indexOf('list-card-text-') >= 0)
                 _id = ("" + _id).substring("list-card-text-".length);
 
-            console.log("load " + event.target.id);
-            console.log("test");
-
             // CHANGE THE CURRENT LIST
             store.clearAllTransactions();
             store.setCurrentListNoAuth(id);
@@ -53,8 +51,8 @@ function ListCard(props) {
             else {
                 userPlaylist.likes.push(auth.user.username);
             }
+            store.updateListNoAuth(idNamePair._id, userPlaylist);
         }
-        store.updateListNoAuth(idNamePair._id, userPlaylist);
     }
 
     function handleDislike(event) {
@@ -70,8 +68,8 @@ function ListCard(props) {
             else {
                 userPlaylist.dislikes.push(auth.user.username);
             }
+            store.updateListNoAuth(idNamePair._id, userPlaylist);
         }
-        store.updateListNoAuth(idNamePair._id, userPlaylist);
     }
 
     function handlePlaylistClick() {
@@ -102,12 +100,6 @@ function ListCard(props) {
             </strong>
         </div>
     }
-
-    let arrowDownIcon = <IconButton 
-        onClick={(event)=>handleLoadList(event, idNamePair._id)}
-        style={{position:"absolute",top:"70%", right:"0.15%",float:"right"}}>
-            <KeyboardArrowDownOutlinedIcon style={{fontSize:"40px", color:'black'}}/>
-        </IconButton>
 
     let likesIcon = ""
 
@@ -156,32 +148,61 @@ function ListCard(props) {
 
     return (
         <ListItem
-            id={idNamePair._id}
-            key={idNamePair._id}
-            sx={{ marginTop: '15px', display: 'flex', p: 1 }}
-            style={{ width: '100%', fontSize: '25pt', backgroundColor: listCardColor }}
-            onClick = {handlePlaylistClick}
+          id={idNamePair._id}
+          key={idNamePair._id}
+          sx={{
+            marginTop: '15px',
+            display: 'flex',
+            p: 1,
+            width: '100%',
+            fontSize: '25pt',
+            backgroundColor: listCardColor,
+            borderRadius: '10px',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+          }}
+          onClick={handlePlaylistClick}
         >
-            <Box sx={{ p: 1, flexGrow: 1 }}><strong>{idNamePair.name} </strong>
-            <br/> 
-            <div
-            style={{fontSize: 20}}>
-                by {userPlaylist.ownerUsername}</div>
-            <br/> {publishedDateInfo}
-            </Box>
-            <Box sx={{ p:1}}>
-                {arrowDownIcon}
-            </Box>
-            <Box sx={{ p:1}}>
-                {likesIcon}
-            </Box>
-            <Box sx={{ p:1}}>
-                {dislikesIcon}
-            </Box>
-            {listensIcon}
-
+          <Box sx={{ p: 1, flexGrow: 1 }}>
+            <strong>{idNamePair.name}</strong>
+            <br />
+            <div style={{ fontSize: '16px', color: 'rgba(0, 0, 0, 0.8)' }}>
+              by {userPlaylist.ownerUsername}
+            </div>
+            <br />
+            {publishedDateInfo}
+          </Box>
+          <Box sx={{ p: 1 }}>
+            <IconButton onClick={(event) => handleLoadList(event, idNamePair._id)}>
+              <KeyboardArrowDownOutlinedIcon style={{ fontSize: '40px', color: 'black' }} />
+            </IconButton>
+          </Box>
+          <Box sx={{ p: 1 }}>
+            {likesIcon && (
+              <IconButton onClick={(event) => handleLike(event)}>
+                <ThumbUpAltOutlinedIcon style={{ fontSize: '40px', color: 'black' }} />
+                <strong style={{ color: 'black' }}>{userPlaylist.likes.length}</strong>
+              </IconButton>
+            )}
+          </Box>
+          <Box sx={{ p: 1 }}>
+            {dislikesIcon && (
+              <IconButton onClick={(event) => handleDislike(event)}>
+                <ThumbDownAltOutlinedIcon style={{ fontSize: '40px', color: 'black' }} />
+                <strong style={{ color: 'black' }}>{userPlaylist.dislikes.length}</strong>
+              </IconButton>
+            )}
+          </Box>
+          <Box sx={{ p: 1 }}>
+            {listensIcon && (
+              <div id="listens" style={{ fontSize: '30px' }}>
+                Listens: {userPlaylist.views.length}
+              </div>
+            )}
+          </Box>
         </ListItem>
-    );
+      );
 }
 
 export default ListCard;
